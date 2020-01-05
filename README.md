@@ -1,5 +1,7 @@
 # ScreenDoorPi
 
+This is a NodeJS project that displays messages posted from an Android/iOS app (see [ScreenDoor](https://github.com/djsc/ScreenDoor/) and displays them on an LCD.
+
 This program runs on a Raspberry Pi and will not build on other platforms due to the i2c-bus dependency. It logs in via Firebase Auth, connects to a Firebase Realtime Database, and uses the attached I2C LCD to display the last message posted by the logged in user. Heartbeats are also sent to the database every 5 minutes so that the phone app can tell if the program has crashed. If a potentially recoverable error occurs, the program will try to recover 5 times over the course of 5 minutes before terminating.
 
 ## Parts:
@@ -81,7 +83,7 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 
 * Setup project
   * cd ~
-  * git clone https://gitlab.com/djsc/sdoorpi.git
+  * git clone https://github.com/djsc/ScreenDoorPi.git
   * cd sdoorpi
   * vim src/constants.ts #Set the Firebase and the Display constants obtained earlier in the instructions. Also set the absolute logfile path. Only set your Firebase password if you're going to automatically start the project on boot
   * npm install #This installs the dependencies
