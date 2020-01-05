@@ -1,0 +1,35 @@
+{
+  "name": "sdoorpi",
+  "version": "1.0.0",
+  "description": "This program runs on a raspberry pi. It connects to a Firebase Realtime Database and reads the last message posted by the user. It then posts it on a connected I2c display. It also updates the heartbeat timestamp in firebase so that the user knows if the program crashes.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node build",
+    "buildandrun": "tsc && node build",
+    "installandbuildandrun": "npm install && tsc && node build",
+    "installandbuild": "npm install && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/djsc/sdoorpi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/djsc/sdoorpi/issues"
+  },
+  "homepage": "https://gitlab.com/djsc/sdoorpi#README",
+  "dependencies": {
+    "firebase": "^5.4.2",
+    "i2c-bus": "^4.0.1",
+    "log4js": "^3.0.5",
+    "moment": "^2.22.2",
+    "readline": "^1.3.0",
+    "sleep": "^5.2.3"
+  },
+  "devDependencies": {
+    "@types/i2c-bus": "^1.0.18",
+    "@types/node": "^10.9.4",
+    "@types/sleep": "0.0.7"
+  }
+}
