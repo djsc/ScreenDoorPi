@@ -75,16 +75,16 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 
 * Install dependencies
-  * curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
   * sudo apt-get install -y nodejs
   * node -v #Should output the Node version number if successful
   * sudo npm i -g typescript
-  * sudo apt-get vim
+  * sudo apt install vim
 
 * Setup project
   * cd ~
   * git clone https://github.com/djsc/ScreenDoorPi.git
-  * cd sdoorpi
+  * cd ScreenDoorPi
   * vim src/constants.ts #Set the Firebase and the Display constants obtained earlier in the instructions. Also set the absolute logfile path. Only set your Firebase password if you're going to automatically start the project on boot
   * npm install #This installs the dependencies
   * tsc #Transpiles the typescript from /src into javascript in /build
