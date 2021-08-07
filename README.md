@@ -63,8 +63,10 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * https://www.raspberrypi.org/documentation/configuration/security.md
 
 * Setup automatic updates (optional)
-    * Follow instructions on https://wiki.debian.org/UnattendedUpgrades
-    * Also add the following to the Unattended-Upgrade list
+    * Option 1: Use crontab to update packages and reboot at a time and interval of your choosing.
+    * Option 2: Use Unattended Upgrades
+      * Follow instructions on https://wiki.debian.org/UnattendedUpgrades
+      * Also add the following to the Unattended-Upgrade list
         * "origin=Raspbian,codename=${distro_codename},label=Raspbian";
         * "origin=Raspberry Pi Foundation,codename=${distro_codename},label=Raspberry Pi Foundation";
 
