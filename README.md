@@ -94,4 +94,4 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 * Automatically start project on boot (optional)
   * Make sure you have your Firebase email/password entered in sdoorpi/src/constants.ts
   * sudo vim /etc/rc.local
-  * Add the following line before the exit command(may need to change pi to your username): node /home/pi/sdoorpi/build &
+  * Add the following line before the exit command(may need to change pi to your username): node /home/pi/ScreenDoorPi/build &
