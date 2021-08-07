@@ -22,12 +22,11 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 ## Firebase Setup:
 * Go to https://console.firebase.google.com/
 * Add a project
-* Dashboard -> Project settings -> Add Firebase to your web app. **Note the fields in between the curly braces for later**
+* Add an app to the project: Dashboard -> Project settings -> General -> Add App -> Web. **Note the firebaseConfig for later**
 * Dashboard -> Authentication -> Sign in method -> Email/Password -> Enable
 * Dashboard -> Authentication -> Users -> Add user -> **Note username and password for later**
-* Dashboard -> Database -> Create database (locked mode) #This creates a Firestore database which we won't be using
-* Every time you go to the databse tab from the dashboard, select Realtime Database at the top instead of Firestore
-* Dashboard -> Database  -> Rules -> Publish the following rules:
+* Dashboard -> Firestore Database -> Create database (locked mode) #This creates a Firestore database which we won't be using
+* Dashboard -> Realtime Database  -> Rules -> Publish the following rules:
 ```
 {
   "rules": {
@@ -39,9 +38,9 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
         ".indexOn": "timePosted",
           "$postID": {
           	".validate": "newData.hasChildren(['text', 'timePosted', 'uuid']) &&
-          	    newData.child('text').isString() &&
-                    newData.child('timePosted').isNumber() &&
-                    newData.child('uuid').isString()"
+              newData.child('text').isString() &&
+              newData.child('timePosted').isNumber() &&
+              newData.child('uuid').isString()"
           }
         },
         "lastHeartbeat": {
@@ -76,7 +75,7 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 
 * Install dependencies
   * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-  * sudo apt-get install -y nodejs
+  * sudo apt install -y nodejs
   * node -v #Should output the Node version number if successful
   * sudo npm i -g typescript
   * sudo apt install vim
