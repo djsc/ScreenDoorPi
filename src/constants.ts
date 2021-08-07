@@ -5,7 +5,8 @@ export const FIREBASE_CONFIG = { //TODO: replace with your own firebase config
     databaseURL: '',
     projectId: '',
     storageBucket: '',
-    messagingSenderId: ''
+    messagingSenderId: '',
+    appId: ''
 };
 //NOTE: can hardcode email/password for convenience, but it's insecure. If you leave them blank, you will be prompted for them at runtime
 //TODO: replace with your own firebase user email/password (not your Google email/pass) if you want automatic login functionality
