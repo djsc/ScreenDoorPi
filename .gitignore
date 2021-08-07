@@ -4,3 +4,4 @@ npm-debug.log
 *.jsbundle
 build
 app.log
+.env
