@@ -69,7 +69,7 @@ class LCD {
     address: number;
     cols: number;
     rows: number;
-    i2c: i2c.I2cBus | null;
+    i2c: i2c.I2CBus | null;
 
     constructor(device: number, address: number, cols: number, rows: number) {
         this.device = device;
@@ -107,7 +107,7 @@ class LCD {
         return Promise.resolve();
     }
 
-    private openPort = (): Promise<i2c.I2cBus> => {
+    private openPort = (): Promise<i2c.I2CBus> => {
         logger.debug('Opening port');
         return new Promise((accept, reject) => {
             const i2cBus = i2c.open(this.device, (err) => {
@@ -116,7 +116,7 @@ class LCD {
                 }
                 logger.debug('Opened port');
                 return accept(i2cBus);
-            });
+            }) as i2c.I2CBus;
         });
     }
 

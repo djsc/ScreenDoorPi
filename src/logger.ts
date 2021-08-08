@@ -16,7 +16,7 @@ log4js.configure({
 });
 
 export const shutdownLogger = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<void>((resolve, reject) => {
         logger.debug('Shutting down logger');
         log4js.shutdown((error: Error) => {
             error ? reject(error) : resolve();
