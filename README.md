@@ -5,9 +5,9 @@ This is a NodeJS project that displays messages posted from an Android/iOS app (
 This program runs on a Raspberry Pi and will not build on other platforms due to the i2c-bus dependency. It logs in via Firebase Auth, connects to a Firebase Realtime Database, and uses the attached I2C LCD to display the last message posted by the logged in user. Heartbeats are also sent to the database every 5 minutes so that the phone app can tell if the program has crashed. If a potentially recoverable error occurs, the program will try to recover 5 times over the course of 5 minutes before terminating.
 
 ## Parts:
-* Raspberry Pi 3 B+
+* Raspberry Pi
 * Case
-* 32 GB UHS 1 Micro SD Card
+* Micro SD Card
 * Power Supply
 * USB Micro SD Card Reader
 * 20x4 I2C LCD
@@ -76,7 +76,7 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 
 * Install dependencies
-  * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+  * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - #Try the latest version first
   * sudo apt install -y nodejs
   * node -v #Should output the Node version number if successful
   * sudo npm i -g typescript
