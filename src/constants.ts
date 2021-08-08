@@ -1,8 +1,6 @@
 //DISPLAY
 export const DISPLAY_WIDTH_CHARS = 20; //likely 16 or 20
 export const DISPLAY_HEIGHT_CHARS = 4; //likely 2 or 4
-export const DISPLAY_ADDRESS = 0x27; //find using i2cdetect
-export const DISPLAY_I2C_BUS = 1; //'1' for RPi Rev >= 2. '0' for RPi Rev 1.
 
 //ERROR DETECTION/MANAGEMENT
 export const HEARTBEAT_INTERVAL_MS = 300000; //5min. frequency of status updates to app. If too long, the app will think device is offline.

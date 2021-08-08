@@ -6,9 +6,7 @@ import {
     RETRY_INTERVAL_MS,
     HEARTBEAT_INTERVAL_MS,
     DISPLAY_WIDTH_CHARS,
-    DISPLAY_HEIGHT_CHARS,
-    DISPLAY_ADDRESS,
-    DISPLAY_I2C_BUS
+    DISPLAY_HEIGHT_CHARS
 } from './constants';
 import { getLines } from './text';
 import { Post } from './types';
@@ -30,6 +28,9 @@ const firebaseConfig = {
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.FIREBASE_APP_ID
 };
+
+const displayI2cBus = parseInt(process.env.DISPLAY_I2C_BUS || '', 10);
+const displayAddress = parseInt(process.env.DISPLAY_ADDRESS || '', 16);
 
 let lcd: LCD | null = null;
 let heartbeatTimer: NodeJS.Timer | null = null;
@@ -107,7 +108,7 @@ const handleError = (err: any) => {
 };
 
 const initializeLCD = (): Promise<void> => {
-    lcd = new LCD(DISPLAY_I2C_BUS, DISPLAY_ADDRESS, DISPLAY_WIDTH_CHARS, DISPLAY_HEIGHT_CHARS);
+    lcd = new LCD(displayI2cBus, displayAddress, DISPLAY_WIDTH_CHARS, DISPLAY_HEIGHT_CHARS);
     return lcd.initialize();
 };
 
