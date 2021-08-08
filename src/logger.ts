@@ -1,9 +1,15 @@
 import log4js from 'log4js';
-import { ENABLE_FILE_LOGGING, LOG_LEVEL, LOG_FILE } from './constants';
+import { ENABLE_FILE_LOGGING, LOG_LEVEL } from './constants';
+import dotenv from 'dotenv'
+
+// loading the variables from the .env file asap
+dotenv.config();
+
+const logFileLocation = process.env.LOG_FILE_LOCATION;
 
 log4js.configure({
     appenders: {
-        app: { type: 'file', filename: LOG_FILE, maxLogSize: 10000000 },
+        app: { type: 'file', filename: logFileLocation, maxLogSize: 10000000 },
         console: { type: 'stdout' }
     },
     categories: { default: { appenders: ['app', 'console'], level: LOG_LEVEL } }

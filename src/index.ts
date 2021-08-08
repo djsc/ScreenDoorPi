@@ -8,10 +8,7 @@ import {
     DISPLAY_WIDTH_CHARS,
     DISPLAY_HEIGHT_CHARS,
     DISPLAY_ADDRESS,
-    DISPLAY_I2C_BUS,
-    FIREBASE_EMAIL,
-    FIREBASE_PASSWORD,
-    FIREBASE_CONFIG
+    DISPLAY_I2C_BUS
 } from './constants';
 import { getLines } from './text';
 import { Post } from './types';
@@ -19,6 +16,20 @@ import logger, {shutdownLogger} from './logger';
 import readline from 'readline';
 import { Writable } from 'stream';
 import sleep from 'sleep';
+import dotenv from 'dotenv';
+
+// loading the variables from the .env file asap
+dotenv.config();
+
+const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    databaseURL: process.env.FIREBASE_DATABASE_URL,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID
+};
 
 let lcd: LCD | null = null;
 let heartbeatTimer: NodeJS.Timer | null = null;
@@ -102,12 +113,12 @@ const initializeLCD = (): Promise<void> => {
 
 const initializeFirebase = async () => {
     if (firebase.apps.length === 0) {
-        firebase.initializeApp(FIREBASE_CONFIG);
+        firebase.initializeApp(firebaseConfig);
     }
-    let email = FIREBASE_EMAIL;
-    let pass = FIREBASE_PASSWORD;
+    let email = process.env.FIREBASE_EMAIL;
+    let pass = process.env.FIREBASE_PASSWORD;
     let userInputtedCredentials = false; //true if the user has to input their credentials.
-    if (email === '') {
+    if (!email) {
         userInputtedCredentials = true;
         const emailReader = readline.createInterface({
             input: process.stdin,
@@ -122,7 +133,7 @@ const initializeFirebase = async () => {
         });
         pass = await readLineAsync('Firebase password: ', passReader, true);
         passReader.close();
-    } else if (pass === '') {
+    } else if (!pass) {
         userInputtedCredentials = true;
         console.log('Firebase email: ' + email);
         const passReader = readline.createInterface({
