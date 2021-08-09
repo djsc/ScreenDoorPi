@@ -15,9 +15,14 @@ import readline from 'readline';
 import { Writable } from 'stream';
 import sleep from 'sleep';
 import dotenv from 'dotenv';
+import path from 'path';
 
-// loading the variables from the .env file asap
-dotenv.config();
+// loading the variables from the .env file asap. Path is necessary when running from rc.local
+const envResult = dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
+if (envResult.error) {
+    throw new Error('Could not load the .env file: ' + JSON.stringify(envResult.error));
+}
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -27,10 +32,19 @@ const firebaseConfig = {
     storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.FIREBASE_APP_ID
-};
+}; 
 
 const displayI2cBus = parseInt(process.env.DISPLAY_I2C_BUS || '', 10);
 const displayAddress = parseInt(process.env.DISPLAY_ADDRESS || '', 16);
+
+if (!firebaseConfig.apiKey || !firebaseConfig.authDomain || 
+    !firebaseConfig.databaseURL || !firebaseConfig.projectId || 
+    !firebaseConfig.storageBucket || !firebaseConfig.messagingSenderId || 
+    !firebaseConfig.appId || !displayI2cBus || !displayAddress
+) {
+    throw new Error('Some required properties in the .env file are not defined');
+} 
+
 
 let lcd: LCD | null = null;
 let heartbeatTimer: NodeJS.Timer | null = null;
