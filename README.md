@@ -53,8 +53,8 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 ```
 
 ## Raspberry Pi Setup:
-* Install Raspbian
-  * https://www.raspberrypi.org/documentation/installation/installing-images/
+* Install Raspberry Pi OS via Raspberry Pi Imager
+  * https://www.raspberrypi.org/software/
 
 * Enable Headless Mode (optional)
   * https://www.raspberrypi.org/documentation/configuration/wireless/headless.md
