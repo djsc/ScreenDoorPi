@@ -68,7 +68,7 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
       * mkdir autoUpdater
       * mkdir autoUpdater/logs
       * touch autoUpdater/logs/cronlog
-      * vim autoUpdater/update.sh
+      * vi autoUpdater/update.sh
       * Add the following:
         ```
         sudo apt update && sudo apt upgrade -y
@@ -96,14 +96,13 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * sudo apt install -y nodejs
   * node -v #Should output the Node version number if successful
   * sudo npm i -g typescript
-  * sudo apt install vim
 
 * Setup project
   * cd ~
   * git clone https://github.com/djsc/ScreenDoorPi.git
   * cd ScreenDoorPi
   * Create a .env file to store your Firebase, LCD, and logging configuration
-    * vim .env
+    * vi .env
     * Copy and paste the following. Remove the comments and insert the constants that were obtained earlier in the instructions. The constants should be inside the quotes.
       ```
         DISPLAY_ADDRESS='0x27' //obtained using i2cdetect
@@ -119,12 +118,12 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
         FIREBASE_MESSAGING_SENDER_ID='' //obtained when setting up Firebase
         FIREBASE_APP_ID='' //obtained when setting up Firebase
       ```
-  * vim src/constants.ts #Optional. Can configure certain aspects of the app.
+  * vi src/constants.ts #Optional. Can configure certain aspects of the app.
   * npm install #This installs the dependencies
   * tsc #Transpiles the typescript from /src into javascript in /build
   * node build #Starts the program at /build/index.ts
 
 * Automatically start project on boot (optional)
   * For this to work, you need to have your Firebase email/password entered in .env
-  * sudo vim /etc/rc.local
+  * sudo vi /etc/rc.local
   * Add the following line before the exit command(may need to change pi to your username): node /home/pi/ScreenDoorPi/build &
