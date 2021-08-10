@@ -63,7 +63,7 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * https://www.raspberrypi.org/documentation/configuration/security.md
 
 * Install dependencies
-  * curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - #Try the latest version first
+  * ```curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -``` #Try the latest version first
   * sudo apt install -y nodejs
   * node -v #Should output the Node version number if successful
   * sudo npm i -g typescript
