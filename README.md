@@ -126,5 +126,8 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 
 * Automatically start project on boot (optional)
   * For this to work, you need to have your Firebase email/password entered in .env
+  * Make sure auto-login is set up
+    * sudo raspi-config
+    * Go to System Options -> Boot / Auto Login -> Select Console Autologin or Desktop Autologin
   * sudo vim /etc/rc.local
   * Add the following line before the exit command(may need to change pi to your username): node /home/pi/ScreenDoorPi/build &
