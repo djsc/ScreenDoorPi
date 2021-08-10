@@ -64,6 +64,22 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 
 * Setup automatic updates (optional)
     * Option 1: Use crontab to update packages and reboot at a time and interval of your choosing.
+      * cd /home/pi
+      * mkdir autoUpdater
+      * mkdir autoUpdater/logs
+      * touch autoUpdater/logs/cronlog
+      * vim autoUpdater/update.sh
+      * Add the following:
+        ```
+        sudo apt update && sudo apt upgrade -y
+        sudo apt autoremove -y
+        sudo apt autoclean -y
+        sudo reboot
+        ```
+      * chmod +x autoUpdater/update.sh
+      * crontab -e
+      * Add the following line to run the script every Saturday at 12:00 AM
+        ```0 0 * * SAT sh /home/pi/autoUpdater/update.sh > /home/pi/autoUpdater/logs/cronlog 2>&1```
     * Option 2: Use Unattended Upgrades
       * Follow instructions on https://wiki.debian.org/UnattendedUpgrades
       * Also add the following to the Unattended-Upgrade list
