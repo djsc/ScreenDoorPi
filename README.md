@@ -38,9 +38,9 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
         ".indexOn": "timePosted",
           "$postID": {
           	".validate": "newData.hasChildren(['text', 'timePosted', 'uuid']) &&
-              newData.child('text').isString() &&
-              newData.child('timePosted').isNumber() &&
-              newData.child('uuid').isString()"
+                newData.child('text').isString() &&
+                newData.child('timePosted').isNumber() &&
+                newData.child('uuid').isString()"
           }
         },
         "lastHeartbeat": {
