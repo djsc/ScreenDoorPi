@@ -64,18 +64,17 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
 
 * Install dependencies
   * ```curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -``` #Try the latest version first
-  * sudo apt install -y nodejs
-  * node -v #Should output the Node version number if successful
-  * sudo npm i -g typescript
-  * sudo apt install vim
+  * ```sudo apt install -y nodejs```
+  * ```node -v``` #Should output the Node version number if successful
+  * ```sudo npm i -g typescript```
+  * ```sudo apt install vim```
 
 * Setup automatic updates (optional)
     * Option 1: Use crontab to update packages and reboot at a time and interval of your choosing.
-      * cd ~
-      * mkdir autoUpdater
-      * mkdir autoUpdater/logs
-      * touch autoUpdater/logs/cronlog
-      * vim autoUpdater/update.sh
+      * ```cd ~```
+      * ```mkdir autoUpdater```
+      * ```touch autoUpdater/lastUpdateLog```
+      * ```vim autoUpdater/update.sh```
       * Add the following:
         ```
         sudo apt update && sudo apt upgrade -y
@@ -83,15 +82,15 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
         sudo apt autoclean -y
         sudo reboot
         ```
-      * chmod +x autoUpdater/update.sh
-      * crontab -e
+      * ```chmod +x autoUpdater/update.sh```
+      * ```crontab -e```
       * Add the following line to run the script every Saturday at 12:00 AM (may need to change pi to your username)
-        ```0 0 * * SAT sh /home/pi/autoUpdater/update.sh > /home/pi/autoUpdater/logs/cronlog 2>&1```
+        ```0 0 * * SAT sh /home/pi/autoUpdater/update.sh > /home/pi/autoUpdater/lastUpdateLog 2>&1```
     * Option 2: Use Unattended Upgrades
       * Follow instructions on https://wiki.debian.org/UnattendedUpgrades
       * Also add the following to the Unattended-Upgrade list
-        * "origin=Raspbian,codename=${distro_codename},label=Raspbian";
-        * "origin=Raspberry Pi Foundation,codename=${distro_codename},label=Raspberry Pi Foundation";
+        * ```"origin=Raspbian,codename=${distro_codename},label=Raspbian";```
+        * ```"origin=Raspberry Pi Foundation,codename=${distro_codename},label=Raspberry Pi Foundation";```
 
 * Configure LCD and get I2C address
   * Plug in LCD using 4 jumper wires
@@ -99,11 +98,11 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
   * https://learn.adafruit.com/adafruits-raspberry-pi-lesson-4-gpio-setup/configuring-i2c
 
 * Setup project
-  * cd ~
-  * git clone https://github.com/djsc/ScreenDoorPi.git
-  * cd ScreenDoorPi
+  * ```cd ~```
+  * ```git clone https://github.com/djsc/ScreenDoorPi.git```
+  * ```cd ScreenDoorPi```
   * Create a .env file to store your Firebase, LCD, and logging configuration
-    * vim .env
+    * ```vim .env```
     * Copy and paste the following. Remove the comments and insert the constants that were obtained earlier in the instructions. The constants should be inside the quotes.
       ```
         DISPLAY_ADDRESS='0x27' //obtained using i2cdetect
@@ -119,12 +118,12 @@ This program runs on a Raspberry Pi and will not build on other platforms due to
         FIREBASE_MESSAGING_SENDER_ID='' //obtained when setting up Firebase
         FIREBASE_APP_ID='' //obtained when setting up Firebase
       ```
-  * vim src/constants.ts #Optional. Can configure certain aspects of the app.
-  * npm install #This installs the dependencies
-  * tsc #Transpiles the typescript from /src into javascript in /build
-  * node build #Starts the program at /build/index.ts
+  * ```vim src/constants.ts``` #Optional. Can configure certain aspects of the app.
+  * ```npm install``` #This installs the dependencies
+  * ```tsc``` #Transpiles the typescript from /src into javascript in /build
+  * ```node build``` #Starts the program at /build/index.ts
 
 * Automatically start project on boot (optional)
   * For this to work, you need to have your Firebase email/password entered in .env
-  * sudo vim /etc/rc.local
-  * Add the following line before the exit command (may need to change pi to your username): node /home/pi/ScreenDoorPi/build &
+  * ```sudo vim /etc/rc.local```
+  * Add the following line before the exit command (may need to change pi to your username): ```node /home/pi/ScreenDoorPi/build &```
